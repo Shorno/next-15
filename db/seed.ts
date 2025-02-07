@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
 import sampleData from "@/db/sample-data";
+import {prisma} from "@/lib/prisma";
 
 async function seed() {
     await prisma.product.createMany({data : sampleData.products})
