@@ -1,7 +1,7 @@
 "use server"
 
-import prisma from "@/lib/prisma";
 import {convertToObject} from "@/lib/utils";
+import {prisma} from "@/lib/prisma";
 
 export async function getLatestProducts() {
     const products = await prisma.product.findMany({
@@ -10,4 +10,12 @@ export async function getLatestProducts() {
     })
 
     return convertToObject(products)
+}
+
+export async function getProductBySlug(slug: string) {
+    const product = await prisma.product.findUnique({
+        where: {slug}
+    })
+
+    return convertToObject(product)
 }
